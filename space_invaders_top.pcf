@@ -1,11 +1,13 @@
-set_io clk_12MHz 21
-set_io reset 119
-set_io left 47
-set_io right 48
-set_io shoot 56
-set_io start 60
-set_io hsync 113
-set_io vsync 112
-set_io red 114
-set_io green 116
-set_io blue 118
+set_io clk_12MHz B2
+set_io reset C2
+set_io left C1
+set_io right D2
+set_io shoot D1
+set_io start E2
+set_io hsync J1
+set_io vsync H2
+set_io red H1
+set_io green G2
+set_io blue E1
+
+set_io usb_pu A3

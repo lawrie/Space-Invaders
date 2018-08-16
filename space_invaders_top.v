@@ -7,14 +7,15 @@ module space_invaders_top(
 	   input wire  left,
 	   input wire  right,
 	   input wire  shoot,
-	   input wire  start,		  
+	   input wire  start,
 	   output wire hsync, //horizontal sync out
 	   output wire vsync, //vertical sync out
 	   output wire red, //red vga output
 	   output wire green, //green vga output
-	   output wire blue //blue vga output 	       
-	   );   
-   
+	   output wire blue, //blue vga output
+		 output wire usb_pu
+	   );
+
    wire 	       clk_36MHz;
    wire [2:0] 	       rgb;
    wire [9:0] 	       x;
@@ -29,12 +30,14 @@ module space_invaders_top(
    wire 	       start_debounced;
    wire [7:0] 	       score;
    wire [1:0] 	       gameplay;
-   
+
+	 assign usb_pu = 0;
+
    clk_36MHz_generator clk_36MHz_generator1(
 			.clk_12MHz(clk_12MHz),
 			.clk_36MHz(clk_36MHz)
 			);
-   
+
    vga_controller vga_controller1(
 	    .clk_36MHz(clk_36MHz),
 	    .rgb(rgb),
@@ -46,7 +49,7 @@ module space_invaders_top(
 	    .x(x),
 	    .y(y)
 	    );
-   
+
    sprite_drawer sprite_drawer1(
 				.x(x),
 				.y(y),
@@ -68,7 +71,7 @@ module space_invaders_top(
 		      .invaders_line(invaders_line),
 		      .gameplay(gameplay)
 		      );
-   
+
    player player1(
 		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),
@@ -99,5 +102,5 @@ module space_invaders_top(
 		      .invaders_array(invaders_array),
 		      .invaders_line(invaders_line)
 		      );
-   
+
 endmodule
